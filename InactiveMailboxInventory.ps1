@@ -305,8 +305,7 @@ function Get-HoldReasons {
     if ($Mailbox.LitigationHoldEnabled) { $reasons.Add('Litigation Hold') }
     if ($Mailbox.ComplianceTagHoldApplied) { $reasons.Add('Retention Label Hold') }
     if ($Mailbox.DelayHoldApplied) { $reasons.Add('Delay Hold (Outlook data)') }
-    if ($Mailbox.DelayReleaseHoldApplied) { $reasons.Add('Delay Hold (cloud data)') }
-
+    
     foreach ($hold in @($Mailbox.InPlaceHolds)) {
         if ([string]::IsNullOrWhiteSpace($hold)) { continue }
         if ($hold.StartsWith('-')) { continue }               # exclusion, not a hold
@@ -429,7 +428,7 @@ $mailboxProps = @(
     'DisplayName', 'PrimarySmtpAddress', 'DistinguishedName', 'ExchangeGuid',
     'ArchiveStatus', 'ArchiveGuid', 'WhenSoftDeleted',
     'LitigationHoldEnabled', 'InPlaceHolds', 'ComplianceTagHoldApplied',
-    'DelayHoldApplied', 'DelayReleaseHoldApplied'
+    'DelayHoldApplied'
 )
 
 try {
